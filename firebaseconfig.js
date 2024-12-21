@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyAkTPwKPtm-6RtWu_PR3LHAuuSx2ISK8bQ",
-  authDomain: "exchanges-b4fe1.firebaseapp.com",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
   projectId: "exchanges-b4fe1",
-  storageBucket: "exchanges-b4fe1.appspot.com",
-  messagingSenderId: "306322295860",
-  appId: "1:306322295860:web:ab052ff6bd340ce14a4e61",
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 import { initializeApp } from "firebase/app";

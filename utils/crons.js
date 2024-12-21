@@ -26,7 +26,7 @@ cron.schedule(every3hours, async () => {
     const todaysExchanges = data.filter((ex) => {
       return isToday(fbTimeObjectToDateObject(ex.time));
     });
-    console.log("todaysExchanges", todaysExchanges);
+
     todaysExchanges.forEach((ex) => {
       let participantIdsPromises = [];
       let message = `Reminder for your exchange today at ${format(
@@ -35,7 +35,6 @@ cron.schedule(every3hours, async () => {
       )} at ${ex.location.description}`;
       ex.participantIds.forEach((p) => {
         const prom = esGetDoc("users", p);
-        console.log("p", p);
 
         participantIdsPromises.push(prom);
         Promise.all(participantIdsPromises)
@@ -51,7 +50,6 @@ cron.schedule(every3hours, async () => {
             console.log("e", e);
           });
       });
-      console.log(ex.participantIds);
     });
     // sendNotification([]);
     // console.log("todaysExchanges", todaysExchanges);

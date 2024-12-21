@@ -4,7 +4,6 @@ import { esGetCollection } from "../fbqueries/index.js";
 export const getUsers = async (req, res) => {
   try {
     const { data: users } = await esGetCollection("users");
-    console.log("users", users);
     return res.send(users);
   } catch (error) {
     console.log("Xx", error);
@@ -17,7 +16,6 @@ export const getUsers = async (req, res) => {
 export const postNotication = async (req, res) => {
   try {
     const data = await req.body;
-    console.log("data", data);
 
     await sendNotification(data, data.body);
     return res.send(data);
