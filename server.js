@@ -5,6 +5,7 @@ import "./firebaseconfig.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { getUsers, postNotication } from "./controllers/user.js";
+import { getUserStats } from "./controllers/stats.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", getUsers);
+app.get("/stats", getUserStats);
 app.post("/notification", postNotication);
 
 import "./utils/crons.js";
@@ -29,7 +31,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // import serviceAccount from "./ee2-server/exchanges-b4fe1-firebase-adminsdk-mfrdv-4e24bcc3f3.json" assert { type: "json" };
-console.log(12, process.env.API_KEY);
+
 admin.initializeApp({
   credential: admin.credential.cert({
     type: "service_account",

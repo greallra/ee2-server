@@ -44,7 +44,7 @@ export const sendNotification = async (tokens = [], body) => {
       data: { withSome: "data" },
     });
   }
-  console.log("posting push tokens: ", messages);
+  // console.log("posting push tokens: ", messages);
   const url = "https://exp.host/--/api/v2/push/send";
   axios.post(url, messages);
 };
