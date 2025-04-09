@@ -18,6 +18,7 @@ export function fbTimeObjectToDateObject(fbTimeObject) {
 const every2seconds = "*/2 * * * * *";
 const every5seconds = "*/5 * * * * *";
 const every30seconds = "*/30 * * * * *";
+const every10mins = "0 */10 * * * *";
 const every1hour = "0 0 */1 * * *";
 const every3hours = "0 0 */3 * * *";
 cron.schedule(every3hours, async () => {
@@ -96,3 +97,7 @@ function handleIsWithinRadius(exchangeLocation) {
     return error.message;
   }
 }
+
+cron.schedule(every10mins, async () => {
+  const { data } = await esGetCollection("exchanges");
+});
