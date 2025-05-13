@@ -98,6 +98,7 @@ function handleIsWithinRadius(exchangeLocation) {
   }
 }
 
+// keep render server awake
 cron.schedule(every10mins, async () => {
   const { data } = await esGetCollection("exchanges");
 });

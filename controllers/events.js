@@ -1,0 +1,74 @@
+import { sendNotification } from "../utils/notifications.js";
+import { countries, eventsAll, eventsDublin } from "../data.js";
+import { isInDublin } from "../utils/index.js";
+import { esGetCollection } from "../fbqueries/index.js";
+
+export const getEventsCountries = async (req, res) => {
+  try {
+    return res.send(countries);
+  } catch (error) {
+    console.log("Xx", error);
+    return res.send("err!");
+  }
+  return res.send("nada!");
+  //https://dev.to/ibukunfolay/build-a-nodejs-server-using-firebasefirestore-crud-2725
+};
+
+export const getEvents = async (req, res) => {
+  try {
+    if (req.query && req.query.city) {
+      let { data: eventsDublin } = await esGetCollection("eventsDublin");
+      return res.send(eventsDublin);
+    }
+
+    return res.send(eventsAll);
+  } catch (error) {
+    console.log("Xx", error);
+    return res.send("err!");
+  }
+  return res.send("nada!");
+  //https://dev.to/ibukunfolay/build-a-nodejs-server-using-firebasefirestore-crud-2725
+};
+
+export const getAppEvents = async (req, res) => {
+  try {
+    let { data: appEvents } = await esGetCollection("appEvents");
+    return res.send(appEvents);
+  } catch (error) {
+    console.log("Xx", error);
+    return res.send("err!");
+  }
+  return res.send("nada!");
+  //https://dev.to/ibukunfolay/build-a-nodejs-server-using-firebasefirestore-crud-2725
+};
+
+export const getEventAppsEmbedded = async (req, res) => {
+  try {
+    let { data: appEvents } = await esGetCollection("appEvents");
+    const { data: eventsDublin } = await esGetCollection("eventsDublin");
+
+    const eventsEmbedAppEvents = eventsDublin.map((event, index) => {
+      let ae = appEvents.filter((appEvent) => {
+        // console.log(
+        //   "appEvent",
+        //   appEvent.eventId,
+        //   event.id,
+        //   appEvent.eventId == event.id
+        // );
+
+        return appEvent.eventId == event.id;
+      });
+      console.log("ae", ae);
+      return {
+        ...event,
+        appEvents: ae ? ae : [],
+      };
+    });
+    return res.send(eventsEmbedAppEvents);
+  } catch (error) {
+    console.log("Xx", error);
+    return res.send("err!");
+  }
+  return res.send("nada!");
+  //https://dev.to/ibukunfolay/build-a-nodejs-server-using-firebasefirestore-crud-2725
+};
