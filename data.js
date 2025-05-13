@@ -1,4 +1,5 @@
-import events from "./events.json" assert { type: "json" };
+import { readFileSync } from "fs";
+const events = JSON.parse(readFileSync("./events.json", "utf-8"));
 import { addDays, addWeeks, getDay, getYear } from "date-fns";
 import { isInDublin } from "./utils/index.js";
 import { esAddEvent } from "./fbqueries/index.js";
