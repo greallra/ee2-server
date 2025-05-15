@@ -60,7 +60,7 @@ export const getAppEvent = async (req, res) => {
     return res.send(data);
   } catch (error) {
     console.log("Xx", error);
-    return res.send("err!");
+    return res.status(400).send(error);
   }
   return res.send("nada!");
   //https://dev.to/ibukunfolay/build-a-nodejs-server-using-firebasefirestore-crud-2725
