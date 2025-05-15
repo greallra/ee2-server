@@ -5,10 +5,12 @@ import "./firebaseconfig.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { getUsers, postNotication } from "./controllers/user.js";
+import { getProfiles, getSomeProfiles } from "./controllers/profiles.js";
 import { getUserStats } from "./controllers/stats.js";
 import {
   getEvents,
   getAppEvents,
+  getAppEvent,
   getEventsCountries,
   getEventAppsEmbedded,
 } from "./controllers/events.js";
@@ -44,8 +46,12 @@ app.post("/notification", postNotication);
 //events app
 app.get("/events/countries", getEventsCountries);
 app.get("/events", getEvents);
+
 app.get("/appevents", getAppEvents);
+app.get("/appevents/:id", getAppEvent);
 app.get("/eventsappsembedded", getEventAppsEmbedded);
+app.get("/profiles", getProfiles);
+app.post("/profiles", getSomeProfiles);
 import "./utils/crons.js";
 import "./crawler.js";
 

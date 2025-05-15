@@ -39,7 +39,11 @@ function populateAppEvents(event) {
       type: "run",
       title: "Title",
       timestamp: new Date(aFriday),
-      participants: [1, 2, 3],
+      participants: [
+        "XjnWVGEkVdfnSjKNtJtdaTWLbDW2",
+        "qoYtsdZsGnTdIJHfXrxCgUAsx0C2",
+        "z7f0aOohZCTTDin5Iji83jlQ8Wg2",
+      ],
     });
     aFriday = addWeeks(aFriday, 1);
   }
